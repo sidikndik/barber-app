@@ -1,43 +1,36 @@
 package helper
 
 import (
-	"encoding/json"
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
-type Respose struct {
+type Response struct {
 	Status  bool   `json:"status"`
 	Message string `json:"message"`
 	Data    any    `json:"data,omitempty"`
 }
 
-func SuccessResponse(w http.ResponseWriter, message string, statusCode int) {
-	respon := Respose{
+func SuccessResponse(c *gin.Context, message string, statusCode int) {
+	response := Response{
 		Status:  true,
 		Message: message,
 	}
-	w.WriteHeader(statusCode)
-	w.Header().Set("content-type", "application/json")
-	json.NewEncoder(w).Encode(respon)
+	c.JSON(statusCode, response)
 }
 
-func BadResponse(w http.ResponseWriter, message string, statusCode int) {
-	respon := Respose{
+func BadResponse(c *gin.Context, message string, statusCode int) {
+	respon := Response{
 		Status:  false,
 		Message: message,
 	}
-	w.WriteHeader(statusCode)
-	w.Header().Set("content-type", "application/json")
-	json.NewEncoder(w).Encode(respon)
+	c.JSON(statusCode, respon)
 }
 
-func SuccessResponseWithData(w http.ResponseWriter, message string, statusCode int, data interface{}) {
-	respon := Respose{
+func SuccessResponseWithData(c *gin.Context, message string, statusCode int, data interface{}) {
+	respon := Response{
 		Status:  true,
 		Message: message,
 		Data:    data,
 	}
-	w.Header().Set("content-type", "application/json")
-	w.WriteHeader(statusCode)
-	json.NewEncoder(w).Encode(respon)
+	c.JSON(statusCode, respon)
 }
