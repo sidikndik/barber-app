@@ -19,14 +19,14 @@ func NewCustomerHandler(service service.AllService, log *zap.Logger) CustomerHad
 	}
 }
 
-func (CustomerHadler *CustomerHadler) Create(ctx *gin.Context) {
+func (customerHadler *CustomerHadler) Create(ctx *gin.Context) {
 
 }
 
-func (CustomerHadler *CustomerHadler) GetAll(ctx *gin.Context) {
+func (customerHadler *CustomerHadler) GetAll(ctx *gin.Context) {
 
 }
 
-func (CustomerHadler *CustomerHadler) Login(ctx *gin.Context) {
+func (customerHadler *CustomerHadler) Login(ctx *gin.Context) {
 
 }
