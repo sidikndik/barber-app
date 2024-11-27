@@ -8,12 +8,12 @@ import (
 
 type AllHandler struct {
 	CustomerHandler CustomerHadler
-	ProductHadler   ProductHadler
+	ProductHandler  ProductHadler
 }
 
 func NewAllHandler(service service.AllService, log *zap.Logger) AllHandler {
 	return AllHandler{
 		CustomerHandler: NewCustomerHandler(service, log),
-		ProductHadler:   NewProductHandler(service, log),
+		ProductHandler:  NewProductHandler(service, log),
 	}
 }

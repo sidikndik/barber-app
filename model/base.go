@@ -1,10 +1,14 @@
 package model
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Base struct {
-	ID        uint       `json:"id" gorm:"primaryKey;autoIncrement"`
-	CreatedAt *time.Time `json:"created_at,omitempty" gorm:"autoCreateTime"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty" gorm:"autoUpdateTime"`
-	DeletedAt *time.Time `json:"deleted_at,omitempty" gorm:"index"`
+	ID        *uuid.UUID `json:"id,omitempty" gorm:"primaryKey;unique;type:varchar(36);not null"`
+	CreatedAt *time.Time `json:"created_at,omitempty" gorm:"autoCreateTime;type:timestamptz"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty" gorm:"autoUpdateTime;type:timestamptz"`
+	DeletedAt time.Time  `json:"-" gorm:"index"`
 }
